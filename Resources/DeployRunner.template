@@ -12,7 +12,7 @@
 
 FormatVersion: 2.0.0
 Version: 1.0.0
-Name: Deploy Apache
+Name: Deploy GitLab Runner
 
 Parameters:
   enablePHP: $enablePHP
@@ -24,7 +24,7 @@ Scripts:
   apacheDeploy:
     Type: Application
     Version: 1.0.0
-    EntryPoint: runApacheDeploy.sh
+    EntryPoint: deploy.sh
     Files: []
     Options:
       captureStdout: true

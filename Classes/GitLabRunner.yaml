@@ -11,13 +11,13 @@
 #  under the License.
 
 Namespaces:
-  =: com.example.apache
+  =: au.org.adacs
   std: io.murano
   res: io.murano.resources
   sys: io.murano.system
 
 
-Name: ApacheHttpServer
+Name: GitLabRunner
 
 Extends: std:Application
 
@@ -41,7 +41,7 @@ Methods:
     Body:
       - If: not $.getAttr(deployed, false)
         Then:
-          - $._environment.reporter.report($this, 'Creating VM for Apache Server.')
+          - $._environment.reporter.report($this, 'Creating VM for GitLab runner.')
           - $securityGroupIngress:
             - ToPort: 80
               FromPort: 80
@@ -54,8 +54,8 @@ Methods:
           - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
           - $.instance.deploy()
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('DeployApache.template').bind(dict(enablePHP => $.enablePHP))
-          - $._environment.reporter.report($this, 'Instance is created. Deploying Apache')
+          - $template: $resources.yaml('DeployRunner.template').bind(dict(enablePHP => $.enablePHP))
+          - $._environment.reporter.report($this, 'Instance is created. Deploying GitLab runner')
           - $.instance.agent.call($template, $resources)
-          - $._environment.reporter.report($this, 'Apache is installed.')
+          - $._environment.reporter.report($this, 'GitLab runner is installed.')
           - $.setAttr(deployed, true)
