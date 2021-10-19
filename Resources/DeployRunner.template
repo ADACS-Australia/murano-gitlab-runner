@@ -15,13 +15,15 @@ Version: 1.0.0
 Name: Deploy GitLab Runner
 
 Parameters:
-  enablePHP: $enablePHP
+  runnerName: $runnerName
+  runnerUrl: $runnerUrl
+  runnerToken: $runnerToken
 
 Body: |
-  return apacheDeploy('{0}'.format(args.enablePHP)).stdout
+  return runnerDeploy('{0} {1} {2}'.format(args.runnerName, args.runnerUrl, args.runnerToken)).stdout
 
 Scripts:
-  apacheDeploy:
+  runnerDeploy:
     Type: Application
     Version: 1.0.0
     EntryPoint: deploy.sh

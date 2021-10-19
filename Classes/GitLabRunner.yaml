@@ -25,9 +25,14 @@ Properties:
   name:
     Contract: $.string().notNull()
 
-  enablePHP:
-    Contract: $.bool()
-    Default: false
+  runnerName:
+    Contract: $.string()
+
+  runnerUrl:
+    Contract: $.string()
+
+  runnerToken:
+    Contract: $.string()
 
   instance:
     Contract: $.class(res:Instance).notNull()
@@ -42,19 +47,9 @@ Methods:
       - If: not $.getAttr(deployed, false)
         Then:
           - $._environment.reporter.report($this, 'Creating VM for GitLab runner.')
-          - $securityGroupIngress:
-            - ToPort: 80
-              FromPort: 80
-              IpProtocol: tcp
-              External: true
-            - ToPort: 443
-              FromPort: 443
-              IpProtocol: tcp
-              External: true
-          - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
           - $.instance.deploy()
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('DeployRunner.template').bind(dict(enablePHP => $.enablePHP))
+          - $template: $resources.yaml('DeployRunner.template').bind(dict(runnerName => $.runnerName, runnerUrl => $.runnerUrl, runnerToken => $.runnerToken))
           - $._environment.reporter.report($this, 'Instance is created. Deploying GitLab runner')
           - $.instance.agent.call($template, $resources)
           - $._environment.reporter.report($this, 'GitLab runner is installed.')
