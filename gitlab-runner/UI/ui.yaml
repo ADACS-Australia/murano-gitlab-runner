@@ -31,7 +31,7 @@ Forms:
           description: >-
             Enter the GitLab instance URL to register the runner with.
         - name: runnerToken
-          type: password
+          type: string
           label: Runner Token
           description: >-
             Enter the token for this GitLab runner. You will find this in your repository settings.
