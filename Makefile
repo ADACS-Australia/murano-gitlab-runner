@@ -8,7 +8,10 @@ build: $(TARGET).zip
 clean:
 	rm -rf $(TARGET).zip
 
-upload: $(TARGET).zip
+check: $(TARGET).zip
+	murano-pkg-check $<
+
+upload: check
 	murano package-import -c "Application Servers" --package-version 1.0 --exists-action u $(TARGET).zip
 
 # public:

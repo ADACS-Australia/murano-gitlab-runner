@@ -1,10 +1,14 @@
 #!/bin/bash -xeu
 
-RUNNER_NAME=$1
-RUNNER_URL=$2
-RUNNER_TOKEN=$3
+export RUNNER_NAME="$1"
+export CI_SERVER_URL="$2"
+export REGISTRATION_TOKEN="$3"
+export RUNNER_EXECUTOR="shell"
 
-sudo yum -y update
-wget https://gitlab-runner-downloads.s3.amazonaws.com/latest/rpm/gitlab-runner_amd64.rpm
-sudo rpm -i gitlab-runner_amd64.rpm
-sudo gitlab-runner register --name $RUNNER_NAME --url $RUNNER_URL --token $RUNNER_TOKEN
+wget https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb
+
+while true; do
+  sudo dpkg -i gitlab-runner_amd64.deb && break || echo "Waiting 10s for apt..."; sleep 10
+done
+
+sudo gitlab-runner register --non-interactive --name "$RUNNER_NAME" --url "$CI_SERVER_URL" -r "$REGISTRATION_TOKEN" --executor "$RUNNER_EXECUTOR"

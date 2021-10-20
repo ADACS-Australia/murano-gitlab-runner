@@ -20,7 +20,7 @@ Parameters:
   runnerToken: $runnerToken
 
 Body: |
-  return runnerDeploy('{0} {1} {2}'.format(args.runnerName, args.runnerUrl, args.runnerToken)).stdout
+  return runnerDeploy('\'{0}\' \'{1}\' \'{2}\''.format(args.runnerName, args.runnerUrl, args.runnerToken)).stdout
 
 Scripts:
   runnerDeploy:
