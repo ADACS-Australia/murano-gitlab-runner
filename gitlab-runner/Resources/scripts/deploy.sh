@@ -6,7 +6,7 @@ REGISTRATION_TOKEN="$3"
 RUNNER_EXECUTOR="shell"
 
 while true; do
-  sudo apt install -y gitlab-runner && break || echo "Waiting 10s for apt..."; sleep 10
+  sudo apt-get install -y -q gitlab-runner > /dev/null && break || echo "Waiting 10s for apt..."; sleep 10
 done
 
 sudo gitlab-runner register --non-interactive --name "$RUNNER_NAME" --url "$CI_SERVER_URL" -r "$REGISTRATION_TOKEN" --executor "$RUNNER_EXECUTOR"

@@ -64,7 +64,7 @@ Forms:
           required: false
         - name: unitNamingPattern
           type: string
-          label: Instance Naming Pattern
+          label: Virtual Machine (Instance) Name
           required: false
           maxLength: 64
           regexpValidator: '^[a-zA-z][-_\w]*$'
@@ -72,5 +72,5 @@ Forms:
             invalid: Just letters, numbers, underscores and hyphens are allowed.
           helpText: Just letters, numbers, underscores and hyphens are allowed.
           description: >-
-            Specify a string, that will be used in instance hostname.
+            Specify a string, that will be used in the instance hostname.
             Just A-Z, a-z, 0-9, dash and underline are allowed.
