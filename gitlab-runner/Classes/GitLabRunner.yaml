@@ -36,6 +36,6 @@ Methods:
           - $resources: new(sys:Resources)
           - $template: $resources.yaml('DeployRunner.template').bind(dict(runnerName => $.runnerName, runnerUrl => $.runnerUrl, runnerToken => $.runnerToken))
           - $._environment.reporter.report($this, 'Instance is created. Deploying GitLab runner')
-          - $.instance.agent.call($template, $resources)
+          - $.instance.agent.call($template, $resources, 600)
           - $._environment.reporter.report($this, 'GitLab runner is installed.')
           - $.setAttr(deployed, true)
