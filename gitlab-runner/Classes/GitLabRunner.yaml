@@ -19,6 +19,9 @@ Properties:
   runnerToken:
     Contract: $.string()
 
+  runnerTags:
+    Contract: $.string()
+
   instance:
     Contract: $.class(res:Instance).notNull()
 
@@ -34,7 +37,7 @@ Methods:
           - $._environment.reporter.report($this, 'Creating VM for GitLab runner.')
           - $.instance.deploy()
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('DeployRunner.template').bind(dict(runnerName => $.runnerName, runnerUrl => $.runnerUrl, runnerToken => $.runnerToken))
+          - $template: $resources.yaml('DeployRunner.template').bind(dict(runnerName => $.runnerName, runnerUrl => $.runnerUrl, runnerToken => $.runnerToken, runnerTags => $.runnerTags))
           - $._environment.reporter.report($this, 'Instance is created. Installing GitLab runner service...')
           - $.instance.agent.call($template, $resources, 600)
           - $._environment.reporter.report($this, 'Success. GitLab runner is installed and initialised')

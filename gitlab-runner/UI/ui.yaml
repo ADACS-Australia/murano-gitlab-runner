@@ -6,6 +6,7 @@ Application:
   runnerName: $.appConfiguration.runnerName
   runnerUrl: $.appConfiguration.runnerUrl
   runnerToken: $.appConfiguration.runnerToken
+  runnerTags: $.appConfiguration.runnerTags
   instance:
     ?:
       type: io.murano.resources.LinuxMuranoInstance
@@ -35,6 +36,13 @@ Forms:
           label: Runner Token
           description: >-
             Enter the token for this GitLab runner. You will find this in your repository settings.
+        - name: runnerTags
+          type: string
+          label: Runner tags
+          initial: 'self-hosted, openstack'
+          description: >-
+            Enter a comma separated list of tags to add to the runner.
+            These tags will be available in GitLab CI/CD workflows.
 
   - instanceConfiguration:
       fields:
