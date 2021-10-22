@@ -21,18 +21,21 @@ Forms:
       fields:
         - name: runnerName
           type: string
+          required: true
           label: Runner Name
           initial: 'custom-runner'
           description: >-
             Enter a desired name for the runner. This is the name that you will see on GitLab.
         - name: runnerUrl
           type: string
+          required: true
           label: Runner URL
           initial: 'https://gitlab.com'
           description: >-
             Enter the GitLab instance URL to register the runner with.
         - name: runnerToken
           type: string
+          required: true
           label: Runner Token
           description: >-
             Enter the token for this GitLab runner. You will find this in your repository settings.
