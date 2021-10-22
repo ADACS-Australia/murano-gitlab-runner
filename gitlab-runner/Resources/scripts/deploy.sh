@@ -5,7 +5,7 @@ CI_SERVER_URL="$2"
 REGISTRATION_TOKEN="$3"
 RUNNER_TAG_LIST="$4"
 RUNNER_EXECUTOR="docker"
-DOCKER_IMAGE="ubuntu" # default docker image
+DOCKER_IMAGE="gitlab/gitlab-runner:latest" # default docker image
 
 # Download gitlab-runner (while auto updates are running)
 wget https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb
