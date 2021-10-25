@@ -3,7 +3,7 @@ TARGET=gitlab-runner
 
 # all: update-image-id $(TARGET).zip
 
-build: $(TARGET).zip
+build: write-version $(TARGET).zip
 
 clean:
 	rm -rf $(TARGET).zip
@@ -29,6 +29,12 @@ update-image-id:
     echo "Found ID: $$image_id"; \
     sed -i''".bak" "s/image:.*/image: $$image_id/g" $(TARGET)/UI/ui.yaml; \
     rm $(TARGET)/UI/ui.yaml.bak
+
+write-version:
+	@version=$$(cat VERSION); \
+	echo "Found version: $$version"; \
+	sed -i''".bak" "s/\[v.*\]/\[v$$version\]/g" $(TARGET)/manifest.yaml; \
+	rm $(TARGET)/manifest.yaml.bak
 
 $(TARGET).zip:
 	rm -f $@; cd $(TARGET); zip ../$@ -r *; cd ..

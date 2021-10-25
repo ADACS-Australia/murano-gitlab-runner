@@ -15,6 +15,7 @@ Type: Application
 FullName: au.org.adacs.GitLabRunner
 Name: GitLab self-hosted runner
 Description: |
+ [v0.2.0]
  If you are using self-managed GitLab or you want to use your own runners on GitLab.com, you can install and configure your own runners. This script will automatically install the GitLab runner on a VM and register it with your GitLab instance using a token. The VM will use Ubuntu 20.04 LTS (Focal) amd64 as its operating system. For more information about GitLab runners, see https://docs.gitlab.com/ee/ci/runners/.
 Author: 'ADACS'
 Tags: [Server, WebServer, GitLab, Runner, CI, CD, CICD]
