@@ -2,6 +2,8 @@
 
 This repo contains a Murano (OpenStack) package for the Nectar research cloud. It allows you to set up a GitLab self-hosted runner easily from the dashboard. You can find the most relevant steps of the installation in `deploy.sh`. Currently, it only supports Ubuntu 20.04 LTS.
 
+The runner uses the `docker` executor (https://docs.gitlab.com/runner/executors/docker.html), with `docker:latest` as the default image.
+
 ## Build
 You can build the package with the makefile
 ```
